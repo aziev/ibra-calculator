@@ -8,7 +8,7 @@ const marja = ref(5)
 const packingPrice = ref(150)
 
 const serviceCommissionFixed = ref(425)
-const serviceCommissionPercents = ref(6.9)
+const serviceCommissionPercents = ref(7.4)
 
 const chandaPercents = ref(2)
 
