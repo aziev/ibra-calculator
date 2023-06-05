@@ -41,27 +41,13 @@
 import { computed, ref, watch } from 'vue'
 
 const props = defineProps({
-  initial: Number,
-  type: String,
-})
-
-const emit = defineEmits([
-  'initial-price-change'
-])
-
-watch(() => props.initial, () => {
-  if (props.initial !== undefined) {
-    initialPrice.value = props.initial * 1.05
+  fivePercents: {
+    type: Boolean,
+    default: false,
   }
 })
 
 const initialPrice = ref()
-
-watch(initialPrice, () => {
-  if (props.initial === undefined) {
-    emit('initial-price-change', initialPrice.value)
-  }
-})
 
 const marja = ref(5)
 
@@ -72,7 +58,11 @@ const serviceCommissionPercents = ref(7.4)
 
 const chandaPercents = ref(2)
 
-const wantedPrice = computed(() => initialPrice.value * (100 + marja.value) / 100)
+const wantedPrice = computed(() => {
+  let initial = props.fivePercents ? initialPrice.value * 1.05 : initialPrice.value
+
+  return initial * (100 + marja.value) / 100
+})
 
 const result = computed(() => {
   return wantedPrice.value + packingPrice.value + serviceCommissionFixed.value +

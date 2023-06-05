@@ -3,7 +3,6 @@ import CalculatorForm from "./components/CalculatorForm.vue"
 import { ref } from 'vue'
 
 const currentTab = ref('fiat')
-const initialUsdt = ref()
 </script>
 
 <template>
@@ -29,11 +28,10 @@ const initialUsdt = ref()
   </ul>
   <CalculatorForm
       v-show="currentTab === 'fiat'"
-      @initial-price-change="initialUsdt = $event"
+      :five-percents="true"
   />
   <CalculatorForm
       v-show="currentTab === 'usdt'"
-      :initial="initialUsdt"
   />
 </template>
 
