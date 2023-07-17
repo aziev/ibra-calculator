@@ -70,13 +70,11 @@ const wantedPrice = computed(() => {
 })
 
 const result = computed(() => {
-  // return wantedPrice.value + packingPrice.value + serviceCommissionFixed.value +
-  //     (wantedPrice.value * serviceCommissionPercents.value / 100) +
-  //     (wantedPrice.value * chandaPercents.value / 100)
-  //
-  return (
-        (wantedPrice.value / (1 - chandaPercents.value / 100)) + packingPrice.value + serviceCommissionFixed.value
-      ) / (1 - (serviceCommissionPercents.value + acquiring.value) / 100)
+  let result = (
+      (wantedPrice.value / (1 - chandaPercents.value / 100)) + packingPrice.value + serviceCommissionFixed.value
+  ) / (1 - (serviceCommissionPercents.value + acquiring.value) / 100)
+
+  return Math.ceil(result)
 })
 </script>
 
